@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Cita - Médica</title>
+    <style>
+        body{
+            background-color: #1C2833;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-8">  
+        <div class="row justify-content-center">  
+            <div class="col-md-8">  
+                <div class="card border-primary">  
+                    <div class="card-header bg-primary text-white text-center">  
+                        <h4 class="card-title text-uppercase">FICHA MÉDICA</h4>  
+                    </div>  
+                    <div class="card-body">  
+             <form action="registrar2.php" method="post" class="needs-validation"  novalidate onsubmit="return validarform()">  
+                            <div class="mb-2">
+                                <script>
+                                    var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                                    var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+                                    var f=new Date();                                    
+                                    document.write(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+                                    </script>
+                            </div>
+                            <!-----------------------SEDES------------------------->
+                            <div class="row mb-3">  
+                                <div class="col-sm-12 col-md-12 col-xs-12">  
+                                    <div class="form-group">  
+                                        <label>Seleccione una sede</label>                                          
+                                    </div>  
+                                    <div class="border border-dark p-2">
+                                        <div class="form-check-line">  
+                                            <div class="custom-control custom-radio ">  
+                                                <input type="checkbox" class="custom-control-input" id="campus" aria-describedby="inputGroupPrepend" name="sedes" value="aurora" >  
+                                                <label class="custom-control-label" for="html">CAMPUS LA AURORA</label>  
+                                                  
+                                            </div>                                          
+                                        </div>  
+                                        <div class="form-check-line">  
+                                            <div class="custom-control custom-radio ">  
+                                                <input type="checkbox" class="form-check-input" id="campus" aria-describedby="inputGroupPrepend" name="sedes" value="sur" >  
+                                                <label class="form-check-label" for="javascript">CAMPUS SUR</label>  
+                                                  
+                                            </div>  
+                                        </div>  
+                                        <div class="form-check-line">  
+                                            <div class="custom-control custom-radio ">  
+                                                <input type="checkbox" class="form-check-input" id="campus" aria-describedby="inputGroupPrepend" name="sedes" value="aguas" >  
+                                                <label class="form-check-label" for="csharp">CAMPUS LAS AGUAS</label>  
+                                                  
+                                            </div>  
+                                        </div>            
+                                    </div>            
+                                </div>  
+                            </div>
+                           <!-----------------------Nombres completos------------------------->
+                                <div class="form-group">  
+                                        <div class="form-group mb-2">  
+                                            <div class="input-group">
+                                                <span class="input-group-text">NOMBRES COMPLETOS:</span>
+                                                <input type="text" aria-label="First name" id="nombres_completos" name="nombres_completos" class="form-control" required>
+                                                <div class="invalid-feedback">  
+                                                    Ingresar nombres completos.  
+                                                </div>                                            
+                                            </div>
+                                        </div>  
+                                </div>  
+                          <!-----------------------cedula------------------------->
+                                <div class="form-group">  
+                                    <div class="form-group">  
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" id="basic-addon3">NUMERO DE CÉDULA:<span>
+                                            <input type="number" class="form-control" id="cedula" name="cedula" maxlength="10" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">  
+                                                Ingrese un número de cédula. 
+                                            </div>
+                                        </div>    
+                                    </div>  
+                                </div>  
+                                <!-----------------------correo------------------------->
+                                <div class="form-group">  
+                                    <div class="form-group"> 
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" id="basic-addon3">CORREO INSTITUCIONAL:</span>
+                                            <input type="email" class="form-control" id="basic-url" name="correo_institucional" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">  
+                                                Ingrese correo institucional.  
+                                            </div>
+                                          </div> 
+                                    </div>  
+                                </div> 
+                                <!-----------------------celular------------------------->
+                                <div class="form-group">  
+                                    <div class="form-group">  
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">NUMERO CELULAR:</span>
+                                            <input type="number" pattern="^\d{9}$" class="form-control" id="basic-url" name="celular" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">  
+                                                Ingrese numero telefono.  
+                                            </div>
+                                          </div>
+                                    </div>  
+                                </div>  
+                               <!-----------------------edad------------------------->
+                                    <div class="form-group">  
+                                        <div class="form-group">  
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon3">EDAD:</span>
+                                                <input type="number" class="form-control" id="edad" name="edad" maxlength="10" aria-describedby="basic-addon3" required>
+                                                <div class="invalid-feedback">  
+                                                    Ingrese una edad.  
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>  
+                                     <!-----------------------domicilio------------------------->
+                                    <div class="form-group">  
+                                        <div class="form-group mb-2">  
+                                            <div class="input-group">
+                                                <span class="input-group-text">DOMICILIO:</span>
+                                                <input type="text" aria-label="domicilio" id="domicilio" name="domicilio" class="form-control" required>
+                                                <div class="invalid-feedback">  
+                                                    Ingrese un domicilio.  
+                                                </div>                                            
+                                            </div>
+                                        </div>  
+                                    </div> 
+                                     <!-----------------------discapacidad------------------------->
+                                    <div class="form-group">  
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" id="basic-addon3">Si la respuesta anterior fue "SÍ", explique el tipo de discapacidad</span>
+                                            <input type="text" class="form-control" id="basic-url" name="respuesta_discapacidad" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">  
+                                                Ingrese discapacidad.
+                                            </div>
+                                        </div>    
+                                    </div> 
+                                    <!-----------------------contacto urgencia------------------------->
+                                        <div class="form-group">  
+                                            <div class="input-group mb-2">
+                                                <span class="input-group-text text-wrap" id="basic-addon3">Contacto en caso de urgencia. (Ej. Zoila Mora, Madre, cel. 0955555555)
+                                                    :</span>
+                                                <input type="text" class="form-control" id="basic-url" name="contact_urg" aria-describedby="basic-addon3" required>
+                                                <div class="invalid-feedback">  
+                                                    Ingrese contacto de urgencia.
+                                                </div>
+                                            </div>    
+                                        </div> 
+                                          <!-----------------------puesto de trabajo------------------------->
+                                        <div class="form-group">  
+                                            <div class="input-group mb-2">
+                                                <span class="input-group-text" id="basic-addon3">PUESTO DE TRABAJO
+                                                    :</span>
+                                                <input type="text" class="form-control" id="basic-url" name="puesto_trabajo" aria-describedby="basic-addon3" required>
+                                                <div class="invalid-feedback">  
+                                                    Ingrese su puesto de trabajo. 
+                                                </div>
+                                             </div>    
+                                       
+                                      </div> 
+                                    <!-----------------------actividades de trabajo------------------------->
+                                            <div class="form-group">  
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text" id="basic-addon3">Describa las actividades relevantes en su puesto de  trabajo</span>
+                                                    <input type="text" class="form-control" id="basic-url" name="actividades_relevantes" aria-describedby="basic-addon3" required>
+                                                    <div class="invalid-feedback"> 
+                                                        Ingrese las actividades relevantes de su puesto de trabajo.
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                    <!-----------------------area trabajo------------------------->
+                                    <div class="form-group">  
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" id="basic-addon3">Área de Trabajo:</span>
+                                            <input type="text" class="form-control" id="basic-url" name="area_trabajo" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">   
+                                            </div>
+                                        </div>    
+                                    </div>  
+                                    <!-----------------------grupo sanguineo------------------------->
+                                    <div class="row mb-3">  
+                                        <div class="col-sm-12 col-md-12 col-xs-12">  
+                                            <div class="form-group">  
+                                                <label>Grupo Sanguineo</label>                                          
+                                            </div>  
+                                            <div class="border border-dark p-2">
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio ">  
+                                                        <input type="checkbox" class="custom-control-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Medicamentos" >  
+                                                        <label class="custom-control-label" for="html">A+</label>  
+                                                          
+                                                    </div>                                          
+                                                </div>  
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio ">  
+                                                        <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Alimentos" >  
+                                                        <label class="form-check-label" for="javascript">A-</label>  
+                                                          
+                                                    </div>  
+                                                </div>  
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio ">  
+                                                        <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Pastillas" >  
+                                                        <label class="form-check-label" for="csharp">B+</label>  
+                                                          
+                                                    </div>  
+                                                </div>  
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio">  
+                                                        <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Otros" >  
+                                                        <label class="form-check-label" for="aspdotnet">B-</label>  
+                                                          
+                                                    </div>  
+                                                </div>   
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio">  
+                                                        <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Otros" >  
+                                                        <label class="form-check-label" for="aspdotnet">AB+</label>  
+                                                          
+                                                    </div>  
+                                                </div> 
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio">  
+                                                        <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Otros" >  
+                                                        <label class="form-check-label" for="aspdotnet">AB-</label>  
+                                                          
+                                                    </div>  
+                                                </div> 
+                                                <div class="form-check-line">  
+                                                    <div class="custom-control custom-radio">  
+                                                        <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="grupo_sanguineo" value="Otros" >  
+                                                        <label class="form-check-label" for="aspdotnet">DESCONOZCO MI GRUPO SANGUÍNEO</label>  
+                                                          
+                                                    </div>  
+                                                </div> 										
+                                            </div>            
+                                        </div>  
+                                    </div>
+                           <!-----------------------vigene seguro salud------------------------->
+                           <div class="row mb-3">  
+                            <div class="col-sm-12 col-md-12 col-xs-12">  
+                                <div class="form-group">  
+                                    <label>¿Al momento mantiene vigente algún seguro de salud?</label>                                          
+                                </div>  
+                                <div class="border border-dark p-2">
+                                    <div class="form-check-line">  
+                                        <div class="custom-control custom-radio ">  
+                                            <input type="checkbox" class="custom-control-input" id="" aria-describedby="inputGroupPrepend" name="vigente_seguro_salud" value="Publico" >  
+                                            <label class="custom-control-label" for="html">Público</label>  
+                                              
+                                        </div>                                          
+                                    </div>  
+                                    <div class="form-check-line">  
+                                        <div class="custom-control custom-radio ">  
+                                            <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="vigente_seguro_salud" value="Privado" >  
+                                            <label class="form-check-label" for="javascript">Privado</label>  
+                                              
+                                        </div>  
+                                    </div>             
+                                </div>            
+                            </div>  
+                        </div>
+                           
+                         <!-----------------------lateralidad------------------------->
+                         <div class="row mb-3">  
+                            <div class="col-sm-12 col-md-12 col-xs-12">  
+                                <div class="form-group">  
+                                    <label>Lateralidad</label>                                          
+                                </div>  
+                                <div class="border border-dark p-2">
+                                    <div class="form-check-line">  
+                                        <div class="custom-control custom-radio ">  
+                                            <input type="checkbox" class="custom-control-input" id="" aria-describedby="inputGroupPrepend" name="Lateralidad" value="Derecha" >  
+                                            <label class="custom-control-label" for="html">Derecha</label>  
+                                              
+                                        </div>                                          
+                                    </div>  
+                                    <div class="form-check-line">  
+                                        <div class="custom-control custom-radio ">  
+                                            <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="Lateralidad" value="Izquierda" >  
+                                            <label class="form-check-label" for="javascript">Izquierda</label>  
+                                              
+                                        </div>  
+                                    </div>             
+                                </div>            
+                            </div>  
+                        </div>
+                          <!-----------------------discapacidad------------------------->
+                          <div class="row mb-3">  
+                            <div class="col-sm-12 col-md-12 col-xs-12">  
+                                <div class="form-group">  
+                                    <label>¿Usted posee alguna discapacidad?</label>                                          
+                                </div>  
+                                <div class="border border-dark p-2">
+                                    <div class="form-check-line">  
+                                        <div class="custom-control custom-radio ">  
+                                            <input type="checkbox" class="custom-control-input" id="" aria-describedby="inputGroupPrepend" name="discapacidad" value="SI" >  
+                                            <label class="custom-control-label" for="html">SI</label>  
+                                              
+                                        </div>                                          
+                                    </div>  
+                                    <div class="form-check-line">  
+                                        <div class="custom-control custom-radio ">  
+                                            <input type="checkbox" class="form-check-input" id="" aria-describedby="inputGroupPrepend" name="discapacidad" value="Izquierda" >  
+                                            <label class="form-check-label" for="javascript">NO</label>  
+                                              
+                                        </div>  
+                                    </div>             
+                                </div>            
+                            </div>  
+                        </div>
+                          <!-----------------------discapacidad_si_no------------------------->
+                            <div class="form-group">  
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text text-wrap" id="basic-addon3">Si la respuesta anterior fue "SÍ", explique el tipo de discapacidad.</span>
+                                    <input type="text" class="form-control" id="basic-url" name="discapacidad_si_no" aria-describedby="basic-addon3" required>
+                                    <div class="invalid-feedback">  
+                                    </div>
+                                </div>    
+                            </div> 
+                            <!-----------------------detalle enfermedad------------------------->
+                            <div class="form-group">  
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-addon3">¿Usted posee alguna enfermedad? (Detalle todas las enfermedades actuales. Por ejemplo: Hipertensión arterial, Diabetes, etc.)</span>
+                                    <input type="text" class="form-control" id="basic-url" name="detalle_enfermedad" aria-describedby="basic-addon3" required>
+                                    <div class="invalid-feedback">  
+                                    </div>
+                                  </div>
+                            </div>   
+                                <!-----------------------operado------------------------->
+                                <div class="col-sm-4 col-md-12 col-xs-12">  
+                                    <div class="form-group">  
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text text-wrap" id="basic-addon3 text-wrap">¿Usted ha sido operado/a? (Detalle las intervenciones quirúrgicas.)</span>
+                                            <input type="text" class="form-control" id="basic-url" name="operado" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">  
+                                            </div>
+                                          </div>
+                                    </div>  
+                                </div> 
+                                <!-----------------------antecedene familiar------------------------->
+                                <div class="form-group">  
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text text-wrap" id="basic-addon3">¿Existe antecedentes de alguna enfermedad en su familia? (Ej: Madre con Hipertensión arterial, Padre con Diabetes, Abuelo materno cáncer páncreas, etc.)</span>
+                                        <input type="text" class="form-control" id="basic-url" name="antecedente_familiar" aria-describedby="basic-addon3" required>
+                                        <div class="invalid-feedback">  
+                                        </div>
+                                      </div>
+                                </div>  
+                                <!-----------------------alergia------------------------->
+                                <div class="col-sm-4 col-md-12 col-xs-12">  
+                                    <div class="form-group">  
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text text-wrap" id="basic-addon3">¿Usted presenta alergias? (medicamentos, alimentarias, etc.)</span>
+                                            <input type="text" class="form-control" id="basic-url" name="alergia" aria-describedby="basic-addon3" required>
+                                            <div class="invalid-feedback">  
+                                            </div>
+                                          </div>
+                                    </div>  
+                                </div> 
+                                <div class="row">  
+                                    <div class="col-sm-12 col-md-12 col-xs-12 text-center">  
+                                        <div class="float-right">  
+                                            <button class="btn btn-danger rounded-0" type="reset">Limpiar</button>  
+                                            <button class="btn btn-primary rounded-0" type="submit">Registrar</button>  
+                                        </div>                            
+                                    </div>  
+                                </div>  
+                            </form>  
+                        </div>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
+    
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="javascript/scriptb.js"></script>
+        <script src="javascript/validate.js"></script>
+    </body>
+    </html>
